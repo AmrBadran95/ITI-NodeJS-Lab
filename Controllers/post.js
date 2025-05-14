@@ -22,6 +22,12 @@ const createPost = async (req, res) => {
 
 const getAllPosts = async (req, res) => {
   const posts = await Post.find();
+  if (!posts) {
+    res.status(404).json({
+      message: "No Posts Found.",
+      status: "failed",
+    });
+  }
   res.json({
     message: "posts fetched successfully",
     status: "success",
